@@ -1,1 +1,66 @@
+import time
+import board
+import busio
+import adafruit_gps
+import pyrebase
 
+config = {
+  "apiKey": "AIzaSyBwQWFxeHPKHXG2WwrHGFIDxzNZN3X1X4k",
+  "authDomain": "qi6uycgHVvhL6iXir96ZR4vU3H73.firebaseapp.com",
+  "databaseURL": "https://bats-explorer-de16a-default-rtdb.firebaseio.com",
+  "storageBucket": "qi6uycgHVvhL6iXir96ZR4vU3H73.appspot.com"
+}
+
+firebase = pyrebase.initialize_app(config)
+
+db = firebase.database()
+
+
+# If using I2C, we'll create an I2C interface to talk to using default pins
+i2c = board.I2C()  # uses board.SCL and board.SDA
+
+# Create a GPS module instance.
+gps = adafruit_gps.GPS_GtopI2C(i2c, debug=False)  # Use I2C interface
+
+# Turn on the basic GGA and RMC info (what you typically want)
+gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
+# Turn on just minimum info (RMC only, location):
+
+# Set update rate to once a second (1hz) which is what you typically want.
+gps.send_command(b"PMTK220,1000")
+
+# Main loop runs forever printing the location, etc. every second.
+last_print = time.monotonic()
+while True:
+    gps.update()
+    # Every second print out current location details if there's a fix.
+    current = time.monotonic()
+    if current - last_print >= 1:
+        last_print = current
+        if not gps.has_fix:
+            # Try again if we don't have a fix yet.
+            print("Waiting for fix...")
+            continue
+        # We have a fix! (gps.has_fix is true)
+        # Print out details about the fix like location, date, etc.
+        print("=" * 40)  # Print a separator line.
+        print(
+            "Fix timestamp: {}/{}/{} {:02}:{:02}:{:02}".format(
+                gps.timestamp_utc.tm_mon,  # Grab parts of the time from the
+                gps.timestamp_utc.tm_mday,  # struct_time object that holds
+                gps.timestamp_utc.tm_year,  # the fix time.  Note you might
+                gps.timestamp_utc.tm_hour,  # not get all data like year, day,
+                gps.timestamp_utc.tm_min,  # month!
+                gps.timestamp_utc.tm_sec,
+            )
+        )
+        # print("Latitude: {0:.6f} degrees".format(gps.latitude))
+        # print("Longitude: {0:.6f} degrees".format(gps.longitude))
+        dataGPS = {
+        "Latitude" : float(gps.latitude) ,
+        "Longitude" : float(gps.longitude)
+        }
+        db.child("GPS Data").push(dataGPS)
+
+        db.update(dataGPS)
+        time.sleep(30)
