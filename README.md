@@ -1,6 +1,7 @@
 # EchoBoxPi2.0
 
 Detect.Classify.Exhibit
+
 <img width="398" alt="image" src="https://github.com/Rita888/EchoPiBox-2.0/assets/93122551/ce94ce5b-daa7-4f7f-b86f-efd7c5d6ff24">
 
 EchoPiBox 2.0 Passive Acoustic Monitor: Detection and Species Identification Accuracy.
