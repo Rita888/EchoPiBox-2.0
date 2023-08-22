@@ -24,7 +24,7 @@ Objective: Using Flutter App display data collected by EchoPiBox 2.0 when deploy
 
 <img width="478" alt="image" src="https://github.com/Rita888/EchoPiBox-2.0/assets/93122551/d25ad18e-8482-4845-80e0-71161bda71d6">
 
-
+![image](https://github.com/Rita888/EchoPiBox-2.0/assets/93122551/abdcd3e3-e589-471b-a97b-83a43562be20)
 
 
 
