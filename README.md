@@ -28,7 +28,6 @@ The Outcome
 
 <img width="415" alt="image" src="https://github.com/Rita888/EchoPiBox-2.0/assets/93122551/efb613bb-0c0a-451a-a7c0-13f10dc1184f">
 
-![73a37a97-d4e7-4951-8f21-e1c9473a5446 2](https://github.com/Rita888/EchoPiBox-2.0/assets/93122551/fcba7ae5-227c-40d4-81ca-7ff5c19631ac)
 
 
 
