@@ -6,7 +6,7 @@ Detect.Classify.Exhibit
 <img width="398" alt="image" src="https://github.com/Rita888/EchoPiBox-2.0/assets/93122551/ce94ce5b-daa7-4f7f-b86f-efd7c5d6ff24">
 
 
-EchoPiBox 2.0 Passive Acoustic Monitor: Detection, Species Identification Accuracy and Dispalying Real Time Data.
+EchoPiBox 2.0 Passive Acoustic Monitor: Detection, Species Identification Accuracy and Displaying Real Time Data.
 
 MSc Connected Environments Dissertation by Margarita Smoldareva
 
